@@ -1,0 +1,52 @@
+{% extends 'base_m.html' %}
+{% load staticfiles %}
+{% block right_content %}
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>项目详情</title>
+    <meta name="description" content="Source code generated using layoutit.com">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <ol class="am-breadcrumb">
+                <li><a href="{%url 'index'  %}" class="am-icon-home">首页</a></li>
+                <li class="am-active">项目管理</li>
+                <li class="am-active">项目详情</li>
+            </ol>
+    <div class="panel panel-default" style="margin-left: 40px">
+    <div class="panel-heading"><strong>{{ project.name }}</strong></div>
+     <div class="fieldWrapper">
+         <div class="panel-body">
+             <form class="form-inline" style="margin-top: 10px">
+                <div class="form-group">
+              <label for="filecategory">项目编号：</label>
+              <input style="margin-left: 10px" type="text" class="form-control" id="filecategory" value=" {{ project.no }}" readonly="readonly">
+                </div>
+             </form>
+             <form class="form-inline" style="margin-top: 10px">
+                <div class="form-group">
+              <label for="filecategory">人员数量：</label>
+              <input style="margin-left: 10px" type="text" class="form-control" id="filecategory" value=" {{ project.staffNum }}" readonly="readonly">
+                    <label for="filecategory">产品数量：</label>
+              <input style="margin-left: 10px" type="text" class="form-control" id="filecategory" value="{{ project.productNum }}" readonly="readonly">
+              </div>
+             </form>
+              <form class="form-inline" style="margin-top: 10px">
+                <div class="form-group">
+              <label for="filecategory">发布日期：</label>
+              <input style="margin-left: 10px" type="text" class="form-control" id="filecategory" value=" {{ project.releaseTime|date:"Y-m-d"}}" readonly="readonly">
+                    <label for="filecategory">截止日期：</label>
+              <input style="margin-left: 10px" type="text" class="form-control" id="filecategory" value="{{ project.deadline |date:"Y-m-d"}}" readonly="readonly">
+              </div>
+            </form>
+             <form class="form-inline" style="margin-top: 10px">
+                <div class="form-group">
+              <label for="filecategory">项目描述：</label>
+                    <textarea style="margin-left: 10px;width: 410px"  type="text" class="form-control" id="filecategory"  readonly="readonly">{{ project.content }}</textarea>
+              </div>
+            </form>
+    </div>
+    </div>
+    </div>
+{% endblock %}

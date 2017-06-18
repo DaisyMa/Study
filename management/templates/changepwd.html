@@ -1,0 +1,25 @@
+{% extends "base_m.html" %}
+{% load staticfiles %}
+{% block right_content %}
+    <h2>修改密码</h2>
+    {% if oldpwd_is_wrong %}
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>错误!</h4>原密码不正确
+        </div>
+    {% endif %}
+    <div class="well">
+        <form class="form-horizontal" action="" method="post">
+            {% csrf_token %}
+            <ul class="right-form">
+					<li>原密码：<input type="text" name="oldpwd" placeholder="原密码" required/></li>
+					<li>新密码：<input type="password" name="newpwd1" placeholder="新密码" required/></li>
+                    <li>确认密码：<input type="password" name="newpwd2" placeholder="确认密码" required/></li>
+					<input type="hidden" name="source_url" value="{{ request.META.HTTP_REFERER }}">
+                    <input type="submit" value="确认修改" >
+                    <input type="submit" value="取消修改" ><a href="{% url 'index' %}"></a>
+					<div class="clear"> </div>
+            </ul>
+        </form>
+    </div>
+{% endblock %}

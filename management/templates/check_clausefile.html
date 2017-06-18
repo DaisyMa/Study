@@ -1,0 +1,80 @@
+{% extends 'base_dir_m.html' %}
+{% load staticfiles %}
+{% block left_content %}
+    {% include 'director_left_m.html' %}
+{% endblock %}
+{% block right_content %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>上传产品文件</title>
+    <meta name="description" content="Source code generated using layoutit.com">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <div class="container-fluid">
+	<div >
+            <ol class="am-breadcrumb">
+                <li class="am-icon-home">管理中心</li>
+                <li class="am-active"><a href="{%url 'staffTask_staff'  %}">任务审核</a></li>
+                 <li class="am-active">条款文件</li>
+            </ol>
+    </div>
+ {% include 'message.html' %}
+    <div class="row">
+      <div class="col-md-4">
+          <div class="panel panel-success">
+            <div class="panel-heading"><h3 class="panel-title">提交说明</h3></div>
+              <div class="panel-body">
+            <form class="form-inline" style="margin-top: 10px">
+                <div class="form-group">
+              <label for="filecategory">提交人：</label>
+              <input style="margin-left: 10px" type="text" class="form-control" id="filecategory" value="{{ name }}" readonly="readonly">
+              </div>
+            </form>
+                  <form class="form-inline" style="margin-top: 10px">
+              <div class="form-group">
+              <label for="filecategory" >文件类型：</label>
+              <input type="text" class="form-control" id="filecategory" value="条款文件" readonly="readonly" >
+              </div>
+              </form>
+              <form class="form-inline" style="margin-top: 10px">
+              <div class="form-group">
+              <label for="pagenum">文件页数：</label>
+              <input type="text" class="form-control" id="pagenum" value="{{ file.pageNum }} " readonly="readonly">
+              </div>
+              </form>
+              <form class="form-inline" style="margin-top: 10px">
+              <div class="form-group">
+              <label for="filenote">文件备注：</label>
+              <input type="text" class="form-control" id="filenote" value="{{ file.fileNote }}" readonly="readonly">
+              </div>
+              </form>
+  </div>
+</div>
+      </div>
+      <div class="col-md-8">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">审核结果</h3>
+          </div>
+          <div class="panel-body">
+            <form method="post" >
+                      <p style="margin-top: 5px"><input type="checkbox" name="IsCompany" >公司名称一致</p>
+                      <p style="margin-top: 5px;"><input type="checkbox" name="IsProduct" >产品名称一致</p>
+                      <p style="margin-top: 5px;"><input type="checkbox" name="IsPage"> 文件页数一致</p>
+                      <p style="margin-top: 5px;"><input type="checkbox" name="IsCategory" >文件类型一致</p>
+                      <div class="row" style="margin-top: 10px">
+                          <input style="margin-left: 10px" class="btn btn-default" type="submit" name="check" value="通过审核">
+                          <input style="margin-left: 10px" class="btn btn-default" type="submit" name="return" value="退回文件">
+                      </div>
+                  </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+     <script src="{%static 'js/jquery.min.js'%} "></script>
+     <script src="{%static 'js/bootstrap.min.js'%} "></script>
+     <script src="{%static 'js/scripts.js'%} "></script>
+{% endblock %}

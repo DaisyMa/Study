@@ -1,0 +1,74 @@
+{% extends 'base_f.html' %}
+{% load staticfiles %}
+{% block right_content %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>管理文件</title>
+    <meta name="description" content="Source code generated using layoutit.com">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <div class="container-fluid">
+   {% include 'message.html' %}
+	<div class="row">
+            <ol class="am-breadcrumb">
+                <li class="am-icon-home">文件管理</li>
+                <li class="am-active">下载中心</li>
+                 <li class="am-active">条款文件</li>
+            </ol>
+    </div>
+    <form method="post"  class="form-inline" >
+        <div  class="row" >
+            <div class="col-md-4">
+                {% csrf_token %}
+                请选择文件类型：
+                <select  name="radio" >
+                <option value="rate" >费率文件</option>
+                <option value="clause" selected="selected">条款文件</option>
+                <option value="cash">现金价值表</option>
+                </select>
+                    <input type="submit" class="btn btn-default btn-sm" value="查询" name="filter" style="margin-left: 5px">
+            </div>
+             <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div style="margin-top: 5px">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>文件编号</th>
+                                <th>产品编号</th>
+                                <th>文件页数</th>
+                                <th>提交时间</th>
+                                <th>初审时间</th>
+                                <th>是否复审</th>
+                                <th>复审时间</th>
+                                <th>下载</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for file in list %}
+                            <tr>
+                                 <td class="td">{{ file.no }}</td>
+                                 <td class="td">{{ file.product }}</td>
+                                 <td class="td">{{ file.pageNum }}</td>
+                                 <td class="td">{{ file.uploadTime|date:"Y-m-d" }}</td>
+                                 <td class="td">{{ file.checkTime|date:"Y-m-d" }}</td>
+                                 <td class="td">{% if file.IsReview %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span class="glyphicon glyphicon-remove"></span>{% endif %}</td>
+                                 <td class="td">{% if file.IsReview  %}{{ file.reviewTime|date:"Y-m-d" }}{% else %}-{% endif %}</td>
+                                 <td><a href="{% url 'load_clauseFile'%}?id={{ file.id }}"><span class="glyphicon glyphicon-download-alt"></span>下载</a></td>
+                             </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% include 'pagination_all.html' %}
+                </div>
+            </form>
+	</div>
+
+     <script src="{%static 'js/jquery.min.js'%} "></script>
+     <script src="{%static 'js/bootstrap.min.js'%} "></script>
+     <script src="{%static 'js/scripts.js'%} "></script>
+{% endblock %}

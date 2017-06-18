@@ -1,0 +1,51 @@
+{% extends 'base_task.html' %}
+{% load staticfiles %}
+{% block right_content %}
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>产品列表</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <div class="container-fluid">
+    <div class="row">
+		    <div class="col-md-12">
+                    <form action="{% url 'taskDetail'%}">
+                    <div class="form-group">
+                        <li >任务编号：{{ task.no }}</li>
+                        <li >任务名称：{{ task.name}}</li>
+                    </div>
+                </form>
+                 <form method="post">
+                    <div>
+                    <table class="table table-bordered">
+                    <caption>产品列表</caption>
+                        <thead>
+					<tr>
+						<th>产品编号</th>
+						<th>产品名称</th>
+						<th>所属分类</th>
+						<th>所属公司</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for product in list %}
+                    <tr>
+                        <td class="td">{{ product.no }}</td>
+                        <td class="td">{{ product.name }}</td>
+                        <td class="td">{{ product.category }}</td>
+                        <td class="td">{{ product.company}}</td>
+                     </tr>
+                {% endfor %}
+				</tbody>
+                    </table>
+                </div>
+            </form>
+            </div>
+	</div>
+    </div>
+     <script src="{%static 'js/jquery.min.js'%} "></script>
+     <script src="{%static 'js/bootstrap.min.js'%} "></script>
+     <script src="{%static 'js/scripts.js'%} "></script>
+    {% include 'pagination_all.html' %}
+{% endblock %}

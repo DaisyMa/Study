@@ -1,0 +1,30 @@
+thead{
+    border-top-width: 1px;
+border-top-style: solid;
+border-top-color: rgb(235, 242, 224);
+}
+tr{
+    border-top-width: 1px;
+border-top-style: solid;
+border-top-color: rgb(235, 242, 224);
+}
+td{
+    padding: 5px 10px;
+font-size: 12px;
+font-family:Verdana;
+color: rgb(149, 170, 109);
+}
+th{
+    padding: 5px 10px;
+font-size: 12px;
+font-family: Verdana;
+color: rgb(149, 170, 109);
+}
+
+/* Alternating background colors */
+tr:nth-child(even) {
+background: rgb(230, 238, 214)
+}
+tr:nth-child(odd) {
+background: #FFF
+}

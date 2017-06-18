@@ -1,0 +1,78 @@
+{% extends 'base_task.html' %}
+{% load staticfiles %}
+{% block right_content %}
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>项目小组列表</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link href="{% static 'css/component.css' %}" rel="stylesheet">
+    <style type="text/css">
+    .div1{position:absolute;display:none;}
+    </style>
+    <script type="text/javascript">
+        function div1Show() {
+            var div1 = document.getElementById("div1");
+            div1.style.display = "";
+        }
+    </script>
+    <div class="container-fluid">
+    <ol class="am-breadcrumb">
+                <li><a href="{%url 'index'  %}" class="am-icon-home">首页</a></li>
+                <li><a href="{%url 'addTask_list'  %}">任务管理</a></li>
+                <li class="am-active">分配任务</li>
+                <li class="am-active">分配到小组</li>
+            </ol>
+    <div class="row">
+     {% include 'message.html' %}
+		    <div class="col-md-12">
+                 <form action="{% url 'allotToGroup' %}">
+                    <div class="form-group">
+                        <p >项目名称:{{ project.name }}</p>
+                        <p >任务编号:{{ task.no }}</p>
+                    </div>
+                </form>
+            <form method="post">
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>选择</th>
+                            <th>小组编号</th>
+                            <th>小组名称</th>
+                            <th>小组人数</th>
+                            <th>小组主管</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for group in list %}
+                        <tr>
+                             <td><input class="radio" type="radio" name="radio" value="{{ group.id }}"></td>
+                             <td class="td">{{ group.no }}</td>
+                             <td class="td"><a href="{% url 'viewMember' %}?id={{ group.id }}">{{ group.name }}</a></td>
+                             <td class="td">{{ group.staffNum }}</td>
+                             <td class="td">{{ group.directorNo }}</td>
+                         </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            <div id="div1" class="div1">
+                <input type="date" name="deadline">
+                <input type="text" name="note">
+            </div>
+            {% include 'pagination_all.html' %}
+            </div>
+            <div>
+                <input type="submit" value="分配"  class="btn btn-primary">
+            </div>
+            </form>
+            </div>
+	</div>
+    </div>
+     <script src="{%static 'js/jquery.min.js'%} "></script>
+     <script src="{%static 'js/bootstrap.min.js'%} "></script>
+     <script src="{%static 'js/scripts.js'%} "></script>
+{% endblock %}

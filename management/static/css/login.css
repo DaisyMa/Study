@@ -1,0 +1,41 @@
+body{
+	background:#eee;
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+h1{
+	text-align:center;
+}
+main{
+	margin:10px 10px 15px 10px;
+	width:80%;
+	background: #fff;
+	float: inherit;
+}
+.left-form{
+	margin:22px 5px 20px;
+	width:40%;
+}
+.right-form{
+
+	margin:22px 20px 5px;
+	width:40%;
+}
+header {
+	text-align:center;
+	padding:1.3em;
+	width: auto;
+}
+
+form{
+	padding-bottom: 2em;
+}
+
+input[type=submit]:hover {
+	background:#2E2D2D;
+	color:#fff;}
+footer {
+	background: #fff;
+	clear: both;
+	text-align: center; }
+
+
